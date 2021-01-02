@@ -184,15 +184,32 @@ def find_pattern(cube, pll, sequences, max_depth, pattern = None, all_patterns =
 def main():
     global log
     # Parse arguments and initialize logging
-    parser = ArgumentParser("Find permutations of PLL algorithms that return " +
-                            "the cube to a solved state")
-    parser.add_argument(action="store", nargs="*", dest="algorithms")
-    parser.add_argument("-d", "--max-depth", default=4)
-    parser.add_argument("-a", "--anki", action="store_true", default=False)
-    parser.add_argument("-s", "--search", action="store", nargs="+")
-    parser.add_argument("-t", "--trainer", action="store_true", default=False)
-
-    parser.add_argument("-v", nargs="?", action=VAction, dest="verbosity")
+    parser = ArgumentParser(__name__, "Find permutations of PLL algorithms " +
+                            "that return the cube to a solved state. If " +
+                            "neither '--anki' or '--trainer' is specified, " +
+                            "print all identified sequences and their " +
+                            "patterns' respective steps.")
+    parser.add_argument(action="store", nargs="*", dest="algorithms",
+                        help="Override the list of algorithms that will be " +
+                        "tested. If not specified, use all algorithms found " +
+                        " in ./pll.json")
+    parser.add_argument("-d", "--max-depth", default=4, help="Set maximum " +
+                        "recursion depth (default: 4)")
+    parser.add_argument("-a", "--anki", action="store_true", default=False, 
+                        help="Print all identified patterns in Anki's flash " +
+                        "card format")
+    parser.add_argument("-s", "--search", action="store", nargs="+", 
+                        help="Only include sequences that use at least one " +
+                        "of the specified patterns")
+    parser.add_argument("-t", "--trainer", action="store_true", default=False,
+                        help="Pick a random sequence and present the steps " +
+                        "one by one. Calculate time to solve each step, as " +
+                        "well as total time and average time per step. " +
+                        "Advance from one step to the next by pressing any " +
+                        "key")
+    parser.add_argument("-v", nargs="?", action=VAction, dest="verbosity", 
+                        help="Set log level. Accepted up to 3 times (e.g. " +
+                        "-vvv)")
     args = parser.parse_args()
     log = init_logging(args)
 
