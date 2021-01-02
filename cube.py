@@ -132,7 +132,8 @@ class Sequence:
 #  loop.
 ##
 def find_pattern(cube, pll, sequences, max_depth, pattern = None, all_patterns = None, limit_one=False):
-    sequences = random.sample(sequences, len(sequences))
+    if limit_one:
+        sequences = random.sample(sequences, len(sequences))
 
     if not pattern:
         pattern = []
