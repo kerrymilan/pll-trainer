@@ -82,8 +82,7 @@
             "name": "Ua", 
             "fwd": "R Ui R U R U R Ui Ri Ui R R",                            
             "rev": "Ri Ri U R U Ri Ui Ri Ui Ri U Ri",
-            "fmt": "(R U' R U) (R U) (R U') (R' U' R2)",
-            "variants": [ "U", "Ui" ]
+            "fmt": "(R U' R U) (R U) (R U') (R' U' R2)"
         },
         {
             "name": "Ub", 
