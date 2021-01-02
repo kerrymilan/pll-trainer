@@ -28,6 +28,38 @@ optional arguments:
   -v [VERBOSITY]        Set log level. Accepted up to 3 times (e.g. -vvv)
 ```
 
+### Usage Example
+
+```
+# Find all sequences comprised of algorithms T, H, and F:
+$ ./cube.py T H F
+
+# Output in Anki flash card mode:
+$ ./cube.py -a T H F
+
+# Select a sequence at random and time each step:
+$ ./cube.py -t T H F
+
+# Increase verbosity:
+$ ./cube.py -vvv T H F
+
+# Find all sequences using T, H, F, Ra, Ua, Ub, and Z:
+$ ./cube.py -vvv -d4 -- H T Z Ua Ub Ra F
+
+# Same as above, but only show sequences that use 'Ra':
+$ ./cube.py -vvv -d4 -s Ra -- H T Z Ua Ub Ra F
+```
+
+### Docker
+
+```
+# Build
+$ sudo docker build -t cube .
+
+# Run
+$ sudo docker run --rm -it cube:latest -vvv -d4 -t -- H T Z Ua Ub Ra F
+```
+
 ## Permutations
 
 This script identifies permutations of PLL algorithms that return the cube to a
@@ -93,12 +125,16 @@ T -> F -> _,<div>(R U R' U') (R' F) (R2 U') (R' U' R U) (R' F')</div><div>R' U' 
 H -> F -> _,<div>(M2' U) (M2' U2) (M2' U) M2'</div><div>R' U' F' (R U R' U') (R' F) (R2 U') (R' U' R U) (R' U R)</div><div>(R U R' U') (R' F) (R2 U') (R' U' R U) (R' F')</div>,H F T
 ```
 
+![Anki flash card example](./images/anki.png)
+
 The output of 'Anki' mode (`-a` or `--anki`) can be imported into Anki's desktop
 app, which can be downloaded from [apps.ankiweb.net](https://apps.ankiweb.net/).
 Optionally, 'Trainer' mode (`-t` or `--trainer`) will randomly select a pattern
 and display the steps one at a time, counting the time to solve each step. The
 last step in this mode is masked and must be identified by analyzing the state
 of the cube.
+
+![Trainer example](./images/trainer.gif)
 
 ## Algorithms
 
