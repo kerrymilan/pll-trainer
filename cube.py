@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import re
 import os
 import sys
 import tty
@@ -88,6 +89,11 @@ class Sequence:
         self.rev = rev
         self.fmt = fmt
 
+        self.fwd_diff = self.gen_diff(self.fwd)
+        log.debug(f"Generated fwd_diff: {''.join([self.initial[i] for i in self.fwd_diff])}")
+        self.rev_diff = self.gen_diff(self.rev)
+        log.debug(f"Generated rev_diff: {''.join([self.initial[i] for i in self.rev_diff])}")
+
     # Apply all steps to a solved cube, then reverse them and make sure the
     # cube returns to its initial state.
     def test(self):
@@ -98,6 +104,16 @@ class Sequence:
         c.sequence(self.fwd)
         c.sequence(self.rev)
         return (c.flat_str() == self.initial)
+
+    @classmethod
+    def gen_diff(cls, pattern):
+        # Generate a diff string for each direction and store it
+        SOLVED_CUBE_STR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01"
+        cube = Cube(SOLVED_CUBE_STR)
+        s1 = cube.flat_str()
+        cube.sequence(pattern)
+        s2 = cube.flat_str()
+        return [ s1.index(s2[i]) for i in range(len(s1)) ]
 
     # Apply all steps and return the updated cube.
     def apply(self, cube):
@@ -118,6 +134,15 @@ class Sequence:
     # Return the formatted list of steps for this sequence.
     def __str__(self):
         return self.fmt
+    
+    def apply_str(self, cube):
+        return "".join([cube[self.fwd_diff[i]] for i in range(len(cube)) ])
+
+    def undo_str(self, cube):
+        return "".join([cube[self.rev_diff[i]] for i in range(len(cube)) ])
+
+def is_solved(cube):
+    return re.match(r"^[O]{9}(YYY|GGG|BBB|WWW){12}[R]{9}$", cube)
 
 ##
 #  Recursively append patterns and check to see if the cube is solved. If it is,
@@ -141,7 +166,7 @@ def find_pattern(cube, pll, sequences, max_depth, pattern = None, all_patterns =
     if not all_patterns:
         all_patterns = set()
 
-    log.debug(f"Pattern: {', '.join(pattern):<18} - {cube.flat_str()}")
+    log.debug(f"Pattern: {', '.join(pattern):<18} - {cube}")
     prev_seq = []
 
     while len(sequences):
@@ -149,10 +174,10 @@ def find_pattern(cube, pll, sequences, max_depth, pattern = None, all_patterns =
         seq = sequences.pop(0)
         if seq[0] not in [x[0] for x in pattern]:
             # Add the sequence to the current pattern and apply it to the cube
-            cube = pll[seq].apply(cube)
+            cube = pll[seq].apply_str(cube)
             pattern.append(seq)
             # Check to see if we've reached a 'solved' state
-            if cube.flat_str() == Sequence.initial:
+            if is_solved(cube):
                 log.info(f"Found pattern: {', '.join(pattern)}")
                 all_patterns.add(" ".join(pattern))
                 if limit_one:
@@ -177,7 +202,7 @@ def find_pattern(cube, pll, sequences, max_depth, pattern = None, all_patterns =
             # reached the maximum depth. Undo the pattern and apply the next
             # one.
             pattern.remove(seq)
-            cube = pll[seq].undo(cube)
+            cube = pll[seq].undo_str(cube)
         # Add the sequence to the list of attempted patterns
         prev_seq.append(seq)
     return all_patterns
@@ -268,7 +293,7 @@ def main():
     starting_sequences = set(sequences)
 
     limit_one = args.trainer
-    patterns = find_pattern(cube, pll, sequences, int(args.max_depth), limit_one=limit_one)
+    patterns = find_pattern(cube.flat_str(), pll, sequences, int(args.max_depth), limit_one=limit_one)
     used_sequences = set()
     for p in patterns:
         pattern = p.split()
@@ -397,16 +422,6 @@ def main():
             print(out.replace(" -> _", f" -> {last_pattern}"))
             print(f"Total: {total:.2f}s")
             print(f"Avg:   {total/count:.2f}s")
-
-#   c2 = Cube(Sequence.initial)
-#   print(str(c2))
-#   print()
-#   c2.sequence("Y Y X R R D D R U Ri D D R Ui R Xi Yi Yi")
-#   print(str(c2))
-#   print()
-#   c2.sequence("Y Y X Ri U Ri Di Di R Ui Ri Di Di Ri Ri Xi Yi Yi")
-#   print(str(c2))
-
 
 if __name__ == "__main__":
     sys.exit(main())
