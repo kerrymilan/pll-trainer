@@ -8,14 +8,14 @@
         },
         {
             "name": "Aa",
-            "fwd": "Y Y Xi Ri U Ri D D R Ui R D D R R",
-            "rev": "Ri Ri Di Di Ri U Ri Di Di R Ui R X Yi Yi",
+            "fwd": "Yi X Ri U Ri D D R Ui Ri D D R R Xi Y",
+            "rev": "Yi X R R D D R U Ri D D R Ui R Xi Y",
             "fmt": "x (R' U R') D2 (R U' R') D2 R2"
         },
         {
             "name": "Ab",
-            "fwd": "Y Y X R R D D R U Ri D D R Ui R",
-            "rev": "Ri U Ri Di Di R Ui Ri Di Di Ri Ri Xi Yi Yi",
+            "fwd": "X R R D D R U Ri D D R Ui R Xi",
+            "rev": "X Ri U Ri Di Di R Ui Ri Di Di Ri Ri Xi",
             "fmt": "x R2 D2 (R U R') D2 (R U' R)"
         },
         {
@@ -59,6 +59,18 @@
             "fwd": "R U Ri Fi R U Ri Ui Ri F R R Ui Ri Ui",
             "rev": "U R U Ri Ri Fi R U R Ui Ri F R Ui Ri",
             "fmt": "(R U R' F') (R U R' U') (R' F) (R2 U') (R' U')"
+        },
+        {
+            "name": "Na",
+            "fwd": "R U Ri U R U Ri Fi R U Ri Ui Ri F R R Ui Ri U U R Ui Ri",
+            "rev": "R U Ri Ui Ui R U Ri Ri Fi R U R Ui Ri F R Ui Ri Ui R Ui Ri",
+            "fmt": "(R U R' U) (R U R' F') (R U R' U') (R' F R2) (U' R' U2) (R U' R')"
+        },
+        {
+            "name": "Nb",
+            "fwd": "Ri U R Ui Ri Fi Ui F R U Ri F Ri Fi R Ui R",
+            "rev": "Ri U Ri F R Fi R Ui Ri Fi U F R U Ri Ui R",
+            "fmt": "(R' U R U') (R' F' U' F R U) (R' F R' F') (R U' R)"
         },
         {
             "name": "Ra",

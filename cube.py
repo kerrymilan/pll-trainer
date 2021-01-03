@@ -66,7 +66,7 @@ def init_logging(args = None):
     logger.debug('Logging initialized')
     return logger
 
-## 
+##
 #  Represents a series of steps to be applied to the cube. Includes methods to
 #  apply both the pattern and its inverse.
 ##
@@ -80,7 +80,7 @@ class Sequence:
     #       'rev', this field has no formatting restrictions.
     #
     # NOTE: 'fwd' and 'rev' must be formatted in the way the rubik-cube library
-    # expects. This includes changing all "_'" to "_i", changing all "_2" to 
+    # expects. This includes changing all "_'" to "_i", changing all "_2" to
     # "_ _", and removing all groupings (e.g. "[R U R']" -> "R U R'")
     def __init__(self, name, fwd, rev, fmt):
         self.name = name
@@ -88,7 +88,7 @@ class Sequence:
         self.rev = rev
         self.fmt = fmt
 
-    # Apply all steps to a solved cube, then reverse them and make sure the 
+    # Apply all steps to a solved cube, then reverse them and make sure the
     # cube returns to its initial state.
     def test(self):
         if not (self.fwd and self.rev):
@@ -125,8 +125,8 @@ class Sequence:
 #
 #  The base case has been reached when the number of patterns in the chain
 #  exceeds the maximum depth, which defaults to 4 (as defined in the script's
-#  arguments). 
-#  
+#  arguments).
+#
 #  If 'limit_one' is set (used in 'trainer' mode), stop after the first match is
 #  found. This is currently bugged and continues through the rest of the first
 #  loop.
@@ -138,7 +138,7 @@ def find_pattern(cube, pll, sequences, max_depth, pattern = None, all_patterns =
     if not pattern:
         pattern = []
 
-    if not all_patterns: 
+    if not all_patterns:
         all_patterns = set()
 
     log.debug(f"Pattern: {', '.join(pattern):<18} - {cube.flat_str()}")
@@ -161,11 +161,11 @@ def find_pattern(cube, pll, sequences, max_depth, pattern = None, all_patterns =
             elif len(pattern) < max_depth:
                 all_patterns = all_patterns.union(
                                                     find_pattern(
-                                                        cube, 
-                                                        pll, 
-                                                        sequences + prev_seq, 
-                                                        max_depth, 
-                                                        pattern, 
+                                                        cube,
+                                                        pll,
+                                                        sequences + prev_seq,
+                                                        max_depth,
+                                                        pattern,
                                                         all_patterns
                                                     )
                                                  )
@@ -196,10 +196,10 @@ def main():
                         " in ./pll.json")
     parser.add_argument("-d", "--max-depth", default=4, help="Set maximum " +
                         "recursion depth (default: 4)")
-    parser.add_argument("-a", "--anki", action="store_true", default=False, 
+    parser.add_argument("-a", "--anki", action="store_true", default=False,
                         help="Print all identified patterns in Anki's flash " +
                         "card format")
-    parser.add_argument("-s", "--search", action="store", nargs="+", 
+    parser.add_argument("-s", "--search", action="store", nargs="+",
                         help="Only include sequences that use at least one " +
                         "of the specified patterns")
     parser.add_argument("-t", "--trainer", action="store_true", default=False,
@@ -208,15 +208,15 @@ def main():
                         "well as total time and average time per step. " +
                         "Advance from one step to the next by pressing any " +
                         "key")
-    parser.add_argument("-v", nargs="?", action=VAction, dest="verbosity", 
+    parser.add_argument("-v", nargs="?", action=VAction, dest="verbosity",
                         help="Set log level. Accepted up to 3 times (e.g. " +
                         "-vvv)")
     args = parser.parse_args()
     log = init_logging(args)
 
     # Read available algorithms from './pll.json' and parse them into Sequence
-    # objects. 
-    # 
+    # objects.
+    #
     # TODO: Make the file path user-controllable
     pll = {}
     with open('./pll.json') as f:
@@ -238,7 +238,7 @@ def main():
                     v = (v_fwd, v_rev, v_fmt)
 
                     pll[f"{v[2]}+{j['name']}"] = Sequence(
-                        f"{v[2]}+{j['name']}", 
+                        f"{v[2]}+{j['name']}",
                         f"{v[0]} {j['fwd']}",
                         f"{j['rev']} {v[1]}",
                         f"{v[2]} {j['fmt']}"
@@ -286,7 +286,7 @@ def main():
                 out = f"{out},{' '.join(tags)}"
                 print(out)
             elif not args.trainer:
-                # Default case (not Anki or trainer mode): Print each sequence, 
+                # Default case (not Anki or trainer mode): Print each sequence,
                 # including both the list of patterns and their respective
                 # steps.
                 print(f"{' -> '.join(pattern)}")
@@ -330,7 +330,7 @@ def main():
 
     # 'Trainer' mode: select a random sequence from the identified list and step
     # through it. Each step is timed; advance steps by pressing any key. Press
-    # ESC, Ctrl+C, or Ctrl+D to terminate, or advance through the last step. 
+    # ESC, Ctrl+C, or Ctrl+D to terminate, or advance through the last step.
     if args.trainer:
         if not len(patterns):
             log.critical("No patterns found; cannot continue")
@@ -385,7 +385,7 @@ def main():
                             last = True
                 except queue.Empty:
                     pass
-                    
+
                 sys.stdout.write("\r")
                 sys.stdout.write(f"{out} [{elapsed:.2f}s]")
                 sys.stdout.flush()
@@ -397,6 +397,16 @@ def main():
             print(out.replace(" -> _", f" -> {last_pattern}"))
             print(f"Total: {total:.2f}s")
             print(f"Avg:   {total/count:.2f}s")
+
+#   c2 = Cube(Sequence.initial)
+#   print(str(c2))
+#   print()
+#   c2.sequence("Y Y X R R D D R U Ri D D R Ui R Xi Yi Yi")
+#   print(str(c2))
+#   print()
+#   c2.sequence("Y Y X Ri U Ri Di Di R Ui Ri Di Di Ri Ri Xi Yi Yi")
+#   print(str(c2))
+
 
 if __name__ == "__main__":
     sys.exit(main())
