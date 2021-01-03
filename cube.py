@@ -300,12 +300,6 @@ def main():
     if len(not_used):
         log.debug(f"Not used: {', '.join(list(not_used))}")
 
-    interval = 0.01
-    elapsed = 0
-    pattern = random.choice(list(patterns)).split(" ")
-    spacer = ""
-    out = ""
-
     ##
     #  Whenever a key is pressed, add it to the queue to be handled inside the
     #  timer loop.
@@ -338,6 +332,16 @@ def main():
     # through it. Each step is timed; advance steps by pressing any key. Press
     # ESC, Ctrl+C, or Ctrl+D to terminate, or advance through the last step. 
     if args.trainer:
+        if not len(patterns):
+            log.critical("No patterns found; cannot continue")
+            return 1
+
+        pattern = random.choice(list(patterns)).split(" ")
+        interval = 0.01
+        elapsed = 0
+        spacer = ""
+        out = ""
+
         _queue = queue.Queue()
         spawn_thread(_queue)
 
