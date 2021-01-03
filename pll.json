@@ -1,104 +1,104 @@
-{ 
+{
     "algorithms": [
         {
-            "name": "F",  
-            "fwd": "Ri Ui Fi R U Ri Ui Ri F R R Ui Ri Ui R U Ri U R",        
+            "name": "F",
+            "fwd": "Ri Ui Fi R U Ri Ui Ri F R R Ui Ri Ui R U Ri U R",
             "rev": "Ri Ui R Ui Ri U R U Ri Ri Fi R U R Ui Ri F U R",
             "fmt": "R' U' F' (R U R' U') (R' F) (R2 U') (R' U' R U) (R' U R)"
         },
         {
-            "name": "Aa", 
-            "fwd": "Y Y Xi Ri U Ri D D R Ui R D D R R",                      
+            "name": "Aa",
+            "fwd": "Y Y Xi Ri U Ri D D R Ui R D D R R",
             "rev": "Ri Ri Di Di Ri U Ri Di Di R Ui R X Yi Yi",
             "fmt": "x (R' U R') D2 (R U' R') D2 R2"
         },
         {
-            "name": "Ab", 
-            "fwd": "Y Y X R R D D R U Ri D D R Ui R",                        
+            "name": "Ab",
+            "fwd": "Y Y X R R D D R U Ri D D R Ui R",
             "rev": "Ri U Ri Di Di R Ui Ri Di Di Ri Ri Xi Yi Yi",
             "fmt": "x R2 D2 (R U R') D2 (R U' R)"
         },
         {
-            "name": "E",  
-            "fwd": "Y Y Xi R Ui Ri D R U Ri Di R U Ri D R Ui Ri Di X Yi Yi", 
+            "name": "E",
+            "fwd": "Y Y Xi R Ui Ri D R U Ri Di R U Ri D R Ui Ri Di X Yi Yi",
             "rev": "Y Y Xi D R U Ri Di R Ui Ri D R Ui Ri Di R U Ri X Yi Yi",
             "fmt": "x' (R U') (R' D) (R U R' D') (R U R' D) (R U') (R' D')"
         },
         {
-            "name": "Ga", 
-            "fwd": "R R U Ei Ri U Ri Ui R Ui E Ri Ri Yi Ri U R",             
+            "name": "Ga",
+            "fwd": "R R U Ei Ri U Ri Ui R Ui E Ri Ri Yi Ri U R",
             "rev": "Ri Ui R Y R R Ei U Ri U R Ui R E Ui Ri Ri",
             "fmt": "(R2' Uw) (R' U R' U' R Uw') R2' y' (R' U R)"
         },
         {
-            "name": "Gb", 
-            "fwd": "Ri Ui R Y Ri Ri U Ei Ri U R Ui R Ui E Ri Ri",            
+            "name": "Gb",
+            "fwd": "Ri Ui R Y Ri Ri U Ei Ri U R Ui R Ui E Ri Ri",
             "rev": "R R Ei U Ri U Ri Ui R E Ui R R Yi Ri U R",
             "fmt": "(R' U' R) y (R2' Uw R' U) (R U' R Uw' R2')"
         },
         {
-            "name": "Gd", 
-            "fwd": "R U Ri Yi Ri Ri Ui E R Ui Ri U Ri U Ei R R",             
+            "name": "Gd",
+            "fwd": "R U Ri Yi Ri Ri Ui E R Ui Ri U Ri U Ei R R",
             "rev": "Ri Ri E Ui R Ui R U Ri Ei U R R Y R Ui Ri",
             "fmt": "(R U R') y' (R2' Uw' R U') (R' U R' Uw R2)"
         },
         {
-            "name": "H",  
-            "fwd": "M M U M M U U M M U M M",                                
+            "name": "H",
+            "fwd": "M M U M M U U M M U M M",
             "rev": "Mi Mi Ui Mi Mi Ui Ui Mi Mi Ui Mi Mi",
             "fmt": "(M2' U) (M2' U2) (M2' U) M2'"
         },
         {
-            "name": "Ja", 
-            "fwd": "Ri U Li U U R Ui Ri U U L R Ui",                         
+            "name": "Ja",
+            "fwd": "Ri U Li U U R Ui Ri U U L R Ui",
             "rev": "U Ri Li Ui Ui R U Ri Ui Ui L Ui R",
             "fmt": "(R' U L') U2 (R U' R') U2 (L R U') "
         },
         {
-            "name": "Jb", 
-            "fwd": "R U Ri Fi R U Ri Ui Ri F R R Ui Ri Ui",                  
+            "name": "Jb",
+            "fwd": "R U Ri Fi R U Ri Ui Ri F R R Ui Ri Ui",
             "rev": "U R U Ri Ri Fi R U R Ui Ri F R Ui Ri",
             "fmt": "(R U R' F') (R U R' U') (R' F) (R2 U') (R' U')"
         },
         {
-            "name": "Ra", 
-            "fwd": "R U Ri Fi R U U Ri U U Ri F R U R U U Ri Ui",            
+            "name": "Ra",
+            "fwd": "R U Ri Fi R U U Ri U U Ri F R U R U U Ri Ui",
             "rev": "U R Ui Ui Ri Ui Ri Fi R Ui Ui R Ui Ui Ri F R Ui Ri",
             "fmt": "(R U R' F') (R U2 R' U2) (R' F) (R U R U2) (R' U')"
         },
         {
-            "name": "Rb", 
-            "fwd": "Ri U U R U U Ri F R U Ri Ui Ri Fi R R Ui",               
+            "name": "Rb",
+            "fwd": "Ri U U R U U Ri F R U Ri Ui Ri Fi R R Ui",
             "rev": "U Ri Ri F R U R Ui Ri Fi R Ui Ui Ri Ui Ui R",
             "fmt": "(R' U2) (R U2) (R' F R U R' U') (R' F' R2 U')"
         },
         {
-            "name": "T",  
-            "fwd": "R U Ri Ui Ri F R R Ui Ri Ui R U Ri Fi",                  
+            "name": "T",
+            "fwd": "R U Ri Ui Ri F R R Ui Ri Ui R U Ri Fi",
             "rev": "F R Ui Ri U R U Ri Ri Fi R U R Ui Ri",
             "fmt": "(R U R' U') (R' F) (R2 U') (R' U' R U) (R' F')"
         },
         {
-            "name": "Ua", 
-            "fwd": "R Ui R U R U R Ui Ri Ui R R",                            
+            "name": "Ua",
+            "fwd": "R Ui R U R U R Ui Ri Ui R R",
             "rev": "Ri Ri U R U Ri Ui Ri Ui Ri U Ri",
             "fmt": "(R U' R U) (R U) (R U') (R' U' R2)"
         },
         {
-            "name": "Ub", 
-            "fwd": "R R U R U Ri Ui Ri Ui Ri U Ri",                          
+            "name": "Ub",
+            "fwd": "R R U R U Ri Ui Ri Ui Ri U Ri",
             "rev": "R Ui R U R U R Ui Ri Ui R R",
             "fmt": "(R2 U) (R U R' U') (R' U') (R' U R')"
         },
         {
-            "name": "Y",  
-            "fwd": "F R Ui Ri Ui R U Ri Fi R U Ri Ui Ri F R Fi",             
+            "name": "Y",
+            "fwd": "F R Ui Ri Ui R U Ri Fi R U Ri Ui Ri F R Fi",
             "rev": "F Ri Fi R U R Ui Ri F R Ui Ri U R U Ri Fi",
             "fmt": "(F R U') (R' U' R U) (R' F') (R U R' U') (R' F R F')"
         },
         {
-            "name": "Z",  
-            "fwd": "M M Ui M M Ui Mi U U M M U U Mi U U",                    
+            "name": "Z",
+            "fwd": "M M Ui M M Ui Mi U U M M U U Mi U U",
             "rev": "U U M U U M M U U M U M M U M M",
             "fmt": "(M2' U) (M2' U) (M' U2) (M2' U2) (M' U2)"
         }
